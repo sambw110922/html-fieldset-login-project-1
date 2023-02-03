@@ -1,0 +1,256 @@
+<!doctype html>
+<html>
+
+	<head>
+		<title>Example Datalist</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+		
+			html, body {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				margin: 0; padding: 0;
+				font-family: "Arial", sans-serif;
+				font-size: 18px;
+			}
+			
+			nav {
+				padding: 2%;
+			}
+			
+			#imgLogo {
+				display: block;
+				width: 400px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			#tagline {
+				text-align: center;
+				font-family: "Times New Roman", serif;
+				font-style: italic;
+				font-size: 1.2em;
+			}
+			
+			footer {
+				padding: 2%;
+				text-align: center;
+				margin-top: 5%;
+				background-color: black;
+				color: white;
+			}
+			
+			#appRoot, fieldset {
+				display: flex;
+				flex-direction: column;
+			}
+			
+			#welcome {
+				width: 80%;
+				margin-left: auto;
+				margin-right: auto;
+				padding: 5%;
+				text-align: center;
+				background-color: #c4e1ff;
+			}
+			
+			#theLoginForm {
+				padding: 2%;
+				width: 50%;
+				margin-top: 2%;
+				margin-left: auto;
+				margin-right: auto;
+				border-style: solid;
+				border-width: 1px;
+				border-radius: 3px;
+			}
+			
+			fieldset {
+				background-color: white;
+				padding: 2%;
+				margin-top: 10px;
+			}
+			
+			fieldset input {
+				margin-top: 2%;
+			}
+			
+			fieldset label {
+				padding: 2%;
+			}
+			
+			button {
+				background-color: #c4e1ff;
+				padding: 2%;
+				margin-top: 2%;
+				font-size: 1.5em;
+				border-style: none;
+				
+			}
+			
+			button:hover {
+				background-color: #305882;
+				color: white;
+			}
+			
+			.hideError {
+				display: none;
+			}
+			
+			.showError {
+				display: block;
+				padding: 2%;
+				font-weight: bold;
+				color: #ed431c;
+			}
+			
+			#controlContainer {
+				padding: 2%;
+				margin-top: 2%;
+				display: grid;
+				grid-template-columns: 2fr 1fr;
+			}
+			
+		
+		</style>
+	</head>
+	
+	<body>
+	
+		<nav>
+		
+			<a href="./index.html" id="mainNavLink">
+				<img id="imgLogo" name="imgLogo" src="./logo_v1.png" alt="A fake logo." />
+			</a>
+
+			<p id="tagline">A fake login form for a fake platform.</p>
+			
+			
+		</nav>
+		
+		<div id="appRoot">
+		
+			<noscript>
+				<h2>You need to enable JavaScript for this website.</h2>
+			</noscript>
+			
+			<section id="welcome">
+				<h1>Welcome to the platform.</h1>
+				<p>Please login so that you can do platform-y stuff.</p>
+			</section>
+			
+			<section id="theLoginForm">
+			
+				<h2>Login here</h2>
+			
+				<form id="frmLogin" name="frmLogin">
+					
+					<fieldset>
+						<legend>
+							Username:
+						</legend>
+						<input type="text" name="txtUsername" id="txtUsername" />
+						<label id="usernameError" name="usernameError">
+							Error: problem with username.
+						</label>
+					</fieldset>
+					
+					<fieldset>
+						<legend>
+							Password:
+						</legend>
+						<input type="password" name="txtPassword" id="txtPassword" />
+						<label id="passwordError" name="passwordError">
+							Error: problem with password.
+						</label>
+					</fieldset>
+					
+					<div id="controlContainer">
+						<div>
+							<button id="btnLogin" name="btnLogin">Login</button>
+							<button id="btnReset" name="btnReset">Reset</button>
+						</div>
+						<div>
+							<a href="./index.html">
+								Forgot your password?
+							</a>
+						</div>
+					</div>
+				
+				</form>
+				
+			</section>
+			
+		</div>
+		
+		<footer>
+			2023
+		</footer>
+		
+		<script>
+	
+	//	Shows the login error messages.
+	var showErrorMessages = false;
+	
+	//	Show or hide the error messages depending on if showErrorMessages is true
+	function ChangeErrorMessages(){
+	
+		if(showErrorMessages == false){
+		
+			document.getElementById("usernameError").className = "";
+			document.getElementById("usernameError").className = "hideError";
+			
+			document.getElementById("passwordError").className = "";
+			document.getElementById("passwordError").className = "hideError";
+			
+		} else {
+		
+			document.getElementById("usernameError").className = "";
+			document.getElementById("usernameError").className = "showError";
+			
+			document.getElementById("passwordError").className = "";
+			document.getElementById("passwordError").className = "showError";
+		
+		}
+		
+	}
+	
+	//	the init
+	function init(){
+		
+		//	Initially hide the error messages
+		ChangeErrorMessages();
+		
+		document.getElementById("btnLogin").addEventListener("click", function(e){
+		
+			//	prevents the form submission
+			e.preventDefault();
+			
+			showErrorMessages = true;
+			ChangeErrorMessages();
+			
+		});
+		
+		//	resets the form
+		document.getElementById("btnReset").addEventListener("click", function(e){
+		
+			e.preventDefault();
+			
+			showErrorMessages = false;
+			ChangeErrorMessages();
+			
+			document.getElementById("frmLogin").reset();
+			
+		});
+		
+	}
+	
+	init();
+		
+		</script>
+		
+	</body>
+	
+</html>
